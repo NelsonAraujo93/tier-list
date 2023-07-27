@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import Head from 'next/head';
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -11,9 +10,6 @@ export const metadata: Metadata = {
 export default function PostIndex() {
   return (
     <>
-      <Head>
-        <title>First Post</title>
-      </Head>
       <main className="flex min-h-screen flex-col items-center justify-between p-24">
         <h1>First Post</h1>
         <h2>
