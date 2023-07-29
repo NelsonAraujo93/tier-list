@@ -12,7 +12,7 @@ const handler = NextAuth({
     }),
   ],
   debug: process.env.NODE_ENV === 'development',
-  adapter: MongoDBAdapter(clientPromise),
+  adapter: MongoDBAdapter(clientPromise) as any,
 });
 
 export { handler as GET, handler as POST};
