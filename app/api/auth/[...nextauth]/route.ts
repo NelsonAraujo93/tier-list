@@ -11,6 +11,9 @@ const handler = NextAuth({
       clientSecret: process.env.GITHUB_SECRET as string
     }),
   ],
+  pages: {
+    signIn: '/auth',
+  },
   debug: process.env.NODE_ENV === 'development',
   adapter: MongoDBAdapter(clientPromise) as any,
 });
