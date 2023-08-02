@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { NextPage } from "next";
 import { signIn, getProviders } from "next-auth/react";
 import {
@@ -68,7 +68,8 @@ const Divider = ({ word }: IDivicerProps) => {
   );
 };
 
-const Auth: NextPage = ({ providers }: any) => {
+
+const Auth: NextPage = () => {
   const [authType, setAuthType] = useState("Login");
   const oppAuthType: { [key: string]: string } = {
     Login: "Register",
@@ -92,7 +93,7 @@ const Auth: NextPage = ({ providers }: any) => {
               type="submit"
               onClick={() => {
                 signIn(provider.id, {
-                  callbackUrl: `${process.env.URL_DEV}/`,
+                  callbackUrl: 'http://localhost:3000',
                 });
               }}
             >
@@ -150,6 +151,20 @@ const Auth: NextPage = ({ providers }: any) => {
     authType === "Login" ? loginUser() : registerUser();
   };
 
+  const [providers, setProviders] = useState(null);
+
+  useEffect(() => {
+    (async () => {
+      const response: any = await getProviders();
+      setProviders(response);
+      console.log(providers);
+    })();
+  }, []);
+
+  if (!providers) {
+    return <div>Loading...</div>;
+  }
+  
   return (
     <Background>
       <Box
@@ -248,11 +263,3 @@ const Auth: NextPage = ({ providers }: any) => {
 };
 
 export default Auth;
-
-export async function getServerSideProps() {
-  return {
-    props: {
-      providers: await getProviders(),
-    },
-  };
-}
