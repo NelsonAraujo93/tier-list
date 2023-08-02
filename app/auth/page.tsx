@@ -170,7 +170,7 @@ const Auth: NextPage = () => {
       <Box
         w="420px"
         rounded="md"
-        bgGradient="linear(to-r, #ffffff80, #ffffff20)"
+        backgroundColor="#ffffff80"
         p={12}
       >
         <Flex direction="column" justifyContent="center" alignItems="center">
