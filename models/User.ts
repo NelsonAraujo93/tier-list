@@ -21,6 +21,9 @@ const userSchema = new Schema({
         min: 8,
         max: 1024
     },
+    manager: {
+        type: Boolean
+    },
 });
 
 const User = mongoose.models.User || mongoose.model('User', userSchema);
